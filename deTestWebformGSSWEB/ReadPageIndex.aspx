@@ -55,7 +55,13 @@
                     <asp:SqlDataSource runat="server" ID="MEMBER_M_Read_Dropdownlist" ConnectionString='<%$ ConnectionStrings:GSSWEBConnectionString2 %>' SelectCommand="SELECT [USER_ENAME] FROM [MEMBER_M]"></asp:SqlDataSource>
                 </li>
                 <li>
-                    <asp:Label Text="借閱狀態" runat="server" /><asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="BOOK_CODE_Read_dropdownlist" DataTextField="CODE_NAME" DataValueField="CODE_NAME"></asp:DropDownList>
+                    <asp:Label Text="借閱狀態" runat="server" /><asp:DropDownList ID="BOOK_CODE_Read_droplist" runat="server" DataSourceID="SqlDataSource2" DataTextField="CODE_NAME" DataValueField="CODE_ID"></asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:GSSWEBConnectionString %>' SelectCommand="SELECT [CODE_NAME], [CODE_ID] FROM [BOOK_CODE] WHERE ([CODE_TYPE] = @CODE_TYPE)">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="BOOK_STATUS" Name="CODE_TYPE" Type="String"></asp:Parameter>
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource1"></asp:SqlDataSource>
                     <asp:SqlDataSource runat="server" ID="BOOK_CODE_Read_dropdownlist" ConnectionString='<%$ ConnectionStrings:GSSWEBConnectionString3 %>' SelectCommand="SELECT DISTINCT [CODE_NAME] FROM [BOOK_CODE] WHERE ([CODE_TYPE] = @CODE_TYPE)">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="BOOK_STATUS" Name="CODE_TYPE" Type="String"></asp:Parameter>
@@ -70,6 +76,7 @@
                 </li>
             </ul>
         </div>
+        <asp:GridView ID="Read_GridView" runat="server"></asp:GridView>
     </form>
-</body>
+    </body>
 </html>
