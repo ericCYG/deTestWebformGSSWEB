@@ -20,7 +20,7 @@ namespace deTestWebformGSSWEB
             //Response.Redirect("q2.aspx");
 
             string sqlString = @"
-                                                select bc.BOOK_CLASS_NAME 圖書類別,bd.BOOK_NAME 書名,bd.BOOK_BOUGHT_DATE 購書日期,bcode.CODE_NAME 借閱狀態, ISNULL( mm.USER_ENAME,'') 借閱人
+                                                select  bd.BOOK_ID,bc.BOOK_CLASS_NAME 圖書類別,bd.BOOK_NAME 書名,format( bd.BOOK_BOUGHT_DATE,'yyyy/MM/dd') 購書日期,bcode.CODE_NAME 借閱狀態, ISNULL( mm.USER_ENAME,'') 借閱人
                                                 from [dbo].[BOOK_CLASS] bc 
                                                 join [dbo].[BOOK_DATA] bd on bc.BOOK_CLASS_ID = bd.BOOK_CLASS_ID
                                                 join [dbo].[BOOK_CODE] bcode on bcode.CODE_ID = bd.BOOK_STATUS and bcode.CODE_TYPE = 'BOOK_STATUS'
@@ -28,8 +28,8 @@ namespace deTestWebformGSSWEB
                                                 left JOIN [dbo].[MEMBER_M] MM ON MM.USER_ID = LEND.KEEPER_ID 
                                                 where bd.BOOK_NAME  like '%'+@K_bookName+'%' 
                                                 and bc.BOOK_CLASS_NAME = @K_className
-                                                and bd.BOOK_STATUS = @K_bookStatus
-                                                and mm.USER_ENAME = @K_userEname
+                                                or bd.BOOK_STATUS = @K_bookStatus
+                                                or mm.USER_ENAME = @K_userEname
                                                 ";
             List<ParamatsWithValueClass> paramatsWithValueClasses = new List<ParamatsWithValueClass>();
             paramatsWithValueClasses.Add(new ParamatsWithValueClass() { key = "K_bookName", value = BookName_TextBox.Text });
@@ -38,8 +38,8 @@ namespace deTestWebformGSSWEB
             paramatsWithValueClasses.Add(new ParamatsWithValueClass() { key = "K_userEname", value = MEMBER_M_Read_droplist.SelectedValue });
 
 
-            Read_GridView.DataSource = new Unity().exeReader(sqlString, paramatsWithValueClasses);
-            Read_GridView.DataBind();
+            indexReadRepeater.DataSource = new Unity().exeReader(sqlString, paramatsWithValueClasses);
+            indexReadRepeater.DataBind();
         }
 
 
