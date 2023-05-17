@@ -13,11 +13,16 @@ namespace deTestWebformGSSWEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.QueryString["addMode"] == "1" ) {
+                detailSaveButton.Disabled = false;
+            }
             string editModeOn = Request.QueryString["editMode"];
             if (editModeOn == "1")
             {
                 bookDetailBorrowerDropDownList.Enabled = true;
                 bookDetailLendStatusDropDownList.Enabled = true;
+                detailSaveButton.Disabled = false;
+                detailDeleteButton.Disabled = false;
             }
             else {
                 bookDetailBorrowerDropDownList.Enabled = false;
@@ -25,7 +30,7 @@ namespace deTestWebformGSSWEB
             }
 
             string bookName = "";
-            if (Page.IsPostBack == false)
+            if (Page.IsPostBack == false && Request.QueryString["BOOK_ID"] != null)
             {
 
                 bookName = Request.QueryString["BOOK_ID"];
@@ -35,7 +40,7 @@ namespace deTestWebformGSSWEB
                                                 select bd.BOOK_NAME,bd.BOOK_AUTHOR,bd.BOOK_PUBLISHER,bd.BOOK_NOTE,bd.BOOK_BOUGHT_DATE,bc.BOOK_CLASS_id,bd.BOOK_STATUS ,lend.KEEPER_ID
                                                 from BOOK_DATA bd 
                                                 join BOOK_CLASS bc on bd.BOOK_CLASS_ID = bc.BOOK_CLASS_ID
-                                                join BOOK_LEND_RECORD lend on lend.BOOK_ID = bd.BOOK_ID
+                                             left   join BOOK_LEND_RECORD lend on lend.BOOK_ID = bd.BOOK_ID
                                                 where bd.BOOK_ID = @K_bookID
                                                 ";
             List<ParamatsWithValueClass> paramatsWithValueClasses = new List<ParamatsWithValueClass>();
@@ -49,7 +54,7 @@ namespace deTestWebformGSSWEB
                 bookDetailAuthorTextbox.Text = item["BOOK_AUTHOR"].ToString();
                 bookDetailPublisherTextbox.Text = item["BOOK_PUBLISHER"].ToString();
                 bookDetailContentTextArea.InnerText = item["BOOK_NOTE"].ToString();
-                bookDetailBOUGHTDateTextbox.Text = item["BOOK_BOUGHT_DATE"].ToString();
+                bookDetailBOUGHTDateTextbox.Text = Convert.ToDateTime( item["BOOK_BOUGHT_DATE"]).ToString("yyyy/MM/dd");
                 bookDetailClassDropDownList.SelectedValue = item["BOOK_CLASS_id"].ToString();
                 //bookDetailClassDropDownList.Items.FindByText(item["BOOK_CLASS_NAME"].ToString()).Selected = true;
                 //bookDetailClassDropDownList.Items.FindByValue("SC").Selected = true;

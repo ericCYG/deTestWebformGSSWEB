@@ -14,7 +14,7 @@
             <ul>
                 <li>
                     <asp:Label ID="bookDetailBookName" runat="server" Text="書名"></asp:Label>
-                    <asp:TextBox ID="bookDetailBookNameTextbox" runat="server" />
+                    <asp:TextBox ID="bookDetailBookNameTextbox" runat="server" required="required"/>
 
                 </li>
                 <li>
@@ -40,7 +40,9 @@
                 </li>
                 <li>
                     <asp:Label ID="bookDetailBookClass" runat="server" Text="圖書類別"></asp:Label>
-                    <asp:DropDownList ID="bookDetailClassDropDownList" runat="server" DataSourceID="bookDetail_bookClass" DataTextField="BOOK_CLASS_NAME" DataValueField="BOOK_CLASS_ID"></asp:DropDownList>
+                    <asp:DropDownList ID="bookDetailClassDropDownList" required="required" AppendDataBoundItems="true" runat="server" DataSourceID="bookDetail_bookClass" DataTextField="BOOK_CLASS_NAME" DataValueField="BOOK_CLASS_ID">
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
 
                     <asp:SqlDataSource runat="server" ID="bookDetail_bookClass" ConnectionString='<%$ ConnectionStrings:bookLend %>' SelectCommand="SELECT [BOOK_CLASS_ID], [BOOK_CLASS_NAME] FROM [BOOK_CLASS]"></asp:SqlDataSource>
                 </li>
@@ -64,8 +66,8 @@
                 </li>
                 <li >
                     <span>&nbsp</span>
-                    <input type="button" value="存檔" />
-                    <input type="button" style="display:none" value="刪除" />
+                    <input type="submit" id="detailSaveButton" disabled="disabled" value="存檔"  runat="server" />
+                    <input type="button" id="detailDeleteButton" disabled="disabled"  value="刪除"  runat="server" />
                 </li>
             </ul>
         </div>

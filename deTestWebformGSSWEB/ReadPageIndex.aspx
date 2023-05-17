@@ -67,7 +67,7 @@
                     <span>&nbsp</span>
                     <asp:Button ID="btn_Read" runat="server" Text="查詢" />
                     <asp:Button ID="btn_Clear" runat="server" Text="清除" />
-                    <asp:Button ID="btn_Add" runat="server" Text="新增" />
+                 <a href="BookDetail.aspx?addMode=1">新</a>
                 </li>
             </ul>
         </div>
