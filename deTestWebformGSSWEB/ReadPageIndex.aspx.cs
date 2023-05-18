@@ -40,8 +40,8 @@ namespace deTestWebformGSSWEB
                 {
                     sqlString += @"and mm.USER_ENAME = @K_userEname";
                 }
-
-            sqlString += @"order by bd.BOOK_BOUGHT_DATE desc";
+            sqlString += @" "; // 神聖的空白
+        sqlString += @"order by bd.BOOK_BOUGHT_DATE desc";
 
 
                 List<ParamatsWithValueClass> paramatsWithValueClasses = new List<ParamatsWithValueClass>();
@@ -80,6 +80,16 @@ namespace deTestWebformGSSWEB
             //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "刪除成功", "alert('刪除成功')", true);
             Response.Write("<Script language='JavaScript'>alert('刪除成功');</Script>");
             Server.Transfer("ReadPageIndex.aspx");
+        }
+
+        protected void btn_Clear_Click(object sender, EventArgs e)
+        {
+            BookName_TextBox.Text = string.Empty;
+            BOOK_CLASS_Read_droplist.SelectedIndex = 0;
+            MEMBER_M_Read_droplist.SelectedIndex = 0;
+            BOOK_CODE_Read_droplist.SelectedIndex=0;
+            indexReadRepeater.DataSource = null;
+            indexReadRepeater.DataBind();
         }
     }
 }

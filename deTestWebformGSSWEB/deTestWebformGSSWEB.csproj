@@ -105,6 +105,7 @@
     <Content Include="About.aspx" />
     <Content Include="App_Start\style\StyleSheetUL.css" />
     <Content Include="BookDetail.aspx" />
+    <Content Include="BorrowingRecords.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BorrowingRecords.aspx.cs">
+      <DependentUpon>BorrowingRecords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BorrowingRecords.aspx.designer.cs">
+      <DependentUpon>BorrowingRecords.aspx</DependentUpon>
     </Compile>
     <Compile Include="class\ParamatsWithValueClass.cs" />
     <Compile Include="class\Unity.cs" />

@@ -68,7 +68,7 @@
                 <li>
                     <span>&nbsp</span>
                     <asp:Button ID="btn_Read" runat="server" Text="查詢" OnClick="btn_Read_Click" />
-                    <asp:Button ID="btn_Clear" runat="server" Text="清除" />
+                    <asp:Button ID="btn_Clear" runat="server" Text="清除"  OnClick="btn_Clear_Click"/>
                     <a href="BookDetail.aspx?addMode=1">新</a>
                 </li>
             </ul>
@@ -98,7 +98,8 @@
                     <td><%# Eval("借閱狀態") %></td>
                     <td><%# Eval("借閱人") %></td>
                     <td>
-                        <input type="button" value="借閱記錄" />
+                        
+                        <a href='<%# Eval("BOOK_ID" , "BorrowingRecords.aspx?BOOK_ID={0}") %>' class="w3-button w3-black">借閱記錄</a>
                         <a href='<%# Eval("BOOK_ID" , "BookDetail.aspx?BOOK_ID={0}&editMode=1") %>' class="w3-button w3-black">編輯</a>
                          <asp:LinkButton ID="lnkDelete" Text="Delete" runat="server" CommandArgument='<%#Eval("BOOK_ID")%>' CommandName="delete" OnClientClick="return confirm('是否刪除');"
                     OnClick="DeleteCustomer" />
