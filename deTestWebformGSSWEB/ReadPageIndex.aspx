@@ -10,20 +10,22 @@
     <style>
         * {
             /*border: 1px solid;*/
-            margin:1px;
-            padding:3px;
+            margin: 1px;
+            padding: 3px;
         }
-        .readTableClass th,td {
 
-            border:1px solid;
-
+        .readTableClass th, td {
+            border: 1px solid;
         }
-       
+
 
         .readLabel {
             width: 30%;
         }
     </style>
+
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -65,50 +67,51 @@
                 </li>
                 <li>
                     <span>&nbsp</span>
-                    <asp:Button ID="btn_Read" runat="server" Text="查詢" />
+                    <asp:Button ID="btn_Read" runat="server" Text="查詢" OnClick="btn_Read_Click" />
                     <asp:Button ID="btn_Clear" runat="server" Text="清除" />
-                 <a href="BookDetail.aspx?addMode=1">新</a>
+                    <a href="BookDetail.aspx?addMode=1">新</a>
                 </li>
             </ul>
         </div>
         <asp:Repeater ID="indexReadRepeater" runat="server">
             <HeaderTemplate>
 
-                 <table id="indexReadTable" class="readTableClass">
-                        <thead>
-                            <tr>
-                                <th>圖書類別</th>
-                                <th>書名</th>
-                                <th>購書日期</th>
-                                <th>借閱狀態</th>
-                                <th>借閱人</th>
-                                <th>&nbsp</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
+                <table id="indexReadTable" class="readTableClass">
+                    <thead>
+                        <tr>
+                            <th>圖書類別</th>
+                            <th>書名</th>
+                            <th>購書日期</th>
+                            <th>借閱狀態</th>
+                            <th>借閱人</th>
+                            <th>&nbsp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
             </HeaderTemplate>
             <ItemTemplate>
 
                 <tr>
-                        <td><%# Eval("圖書類別") %></td>
-                        <td><a href='<%# Eval("BOOK_ID" , "BookDetail.aspx?BOOK_ID={0}") %>' class="w3-button w3-black"> <%# Eval("書名") %></a></td>
-                        <td><%# Eval("購書日期") %></td>
-                        <td><%# Eval("借閱狀態") %></td>
-                        <td><%# Eval("借閱人") %></td>
-                        <td><input type="button" value="借閱記錄"/>
+                    <td><%# Eval("圖書類別") %></td>
+                    <td><a href='<%# Eval("BOOK_ID" , "BookDetail.aspx?BOOK_ID={0}") %>' class="w3-button w3-black"><%# Eval("書名") %></a></td>
+                    <td><%# Eval("購書日期") %></td>
+                    <td><%# Eval("借閱狀態") %></td>
+                    <td><%# Eval("借閱人") %></td>
+                    <td>
+                        <input type="button" value="借閱記錄" />
                         <a href='<%# Eval("BOOK_ID" , "BookDetail.aspx?BOOK_ID={0}&editMode=1") %>' class="w3-button w3-black">編輯</a>
-                            <input type="button" value="刪除"/></td>
-                    </tr>
+                         <asp:LinkButton ID="lnkDelete" Text="Delete" runat="server" CommandArgument='<%#Eval("BOOK_ID")%>' CommandName="delete" OnClientClick="return confirm('是否刪除');"
+                    OnClick="DeleteCustomer" />
+                    </td>
+                </tr>
 
             </ItemTemplate>
             <FooterTemplate>
-
-                  </tbody>
+                </tbody>
                     </table>
 
             </FooterTemplate>
         </asp:Repeater>
     </form>
-    </body>
+</body>
 </html>

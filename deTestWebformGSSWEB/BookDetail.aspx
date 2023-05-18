@@ -35,7 +35,7 @@
                 <li>
                     <asp:Label ID="bookDetailBOUGHTDate" runat="server" Text="購書日期"></asp:Label>
                     
-                    <asp:TextBox  id="bookDetailBOUGHTDateTextbox" runat="server" />
+                    <asp:TextBox  id="bookDetailBOUGHTDateTextbox"  TextMode="Date" runat="server" />
 
                 </li>
                 <li>
@@ -66,8 +66,10 @@
                 </li>
                 <li >
                     <span>&nbsp</span>
-                    <input type="submit" id="detailSaveButton" disabled="disabled" value="存檔"  runat="server" />
+                    <asp:Button ID="detailSaveButton" runat="server" Text="存檔"  Enabled="false" OnClick="detailSaveButton_Click"/>
+                 
                     <input type="button" id="detailDeleteButton" disabled="disabled"  value="刪除"  runat="server" />
+                    <a href="ReadPageIndex.aspx">返回</a>
                 </li>
             </ul>
         </div>
