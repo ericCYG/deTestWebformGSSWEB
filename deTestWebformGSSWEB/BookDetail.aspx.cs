@@ -159,7 +159,8 @@ namespace deTestWebformGSSWEB
 
             }
 
-            Server.Transfer("ReadPageIndex.aspx");
+            //Server.Transfer("ReadPageIndex.aspx");
+            Response.Redirect("ReadPageIndex.aspx");
         }
     }
 }
