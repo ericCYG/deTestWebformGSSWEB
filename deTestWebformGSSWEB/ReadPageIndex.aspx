@@ -70,6 +70,7 @@
                     <asp:Button ID="btn_Read" runat="server" Text="查詢" OnClick="btn_Read_Click" />
                     <asp:Button ID="btn_Clear" runat="server" Text="清除"  OnClick="btn_Clear_Click"/>
                     <a href="BookDetail.aspx?addMode=1">新</a>
+                    <a href="BookRDLC.aspx">rdlc測試</a>
                 </li>
             </ul>
         </div>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,7 +15,7 @@ namespace deTestWebformGSSWEB
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+            Stopwatch stopwatch = new Stopwatch();
         }
 
         private void testFormLoad()
