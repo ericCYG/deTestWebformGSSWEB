@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link href="App_Start/style/StyleSheetUL.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
         * {
             /*border: 1px solid;*/
@@ -67,6 +68,8 @@
                 </li>
                 <li>
                     <span>&nbsp</span>
+                    <li><a href="About.aspx?md5='123'" target="content_tocframename">Page1</a></li>
+                    <input type="button" value="change" id="changeTest"/>
                     <asp:Button ID="btn_Read" runat="server" Text="查詢" OnClick="btn_Read_Click" />
                     <asp:Button ID="btn_Clear" runat="server" Text="清除"  OnClick="btn_Clear_Click"/>
                     <a href="BookDetail.aspx?addMode=1">新</a>
@@ -115,5 +118,13 @@
             </FooterTemplate>
         </asp:Repeater>
     </form>
+    <script>
+        $("#changeTest").click(function () {
+            //alert("123");
+            //window.frames[0].href('Default.aspx')
+            window.parent.frames[0].document.getElementById('jsID').innerText = "I have changed!";
+        });
+    
+    </script>
 </body>
 </html>

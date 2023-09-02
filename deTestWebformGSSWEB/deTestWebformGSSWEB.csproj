@@ -127,6 +127,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="framset.html" />
     <Content Include="Global.asax" />
     <Content Include="ReadPageIndex.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
